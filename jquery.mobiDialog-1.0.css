@@ -139,6 +139,5 @@ button[class$='_ok'] img, button[class$='_cancel'] img{
 
 /* 遮罩层 */
 #screen_lock{ 
-	background: #000;
-	opacity: 0.5;
+	background: rgba(0, 0, 0, 0.5);
 }
