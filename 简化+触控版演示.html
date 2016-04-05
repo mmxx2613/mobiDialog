@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="cleartype" content="on" />
+    <meta name="apple-mobile-web-app-title" content="提醒效果">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-touch-fullscreen" content="yes">
+    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+	
+	<title>简化封装+触控版演示</title>
+	
+	<!--加载和提醒效果需要饮用的css和js-->
+	<link href="jquery.mobiDialog-1.1.css" rel="stylesheet" />
+	<script src="jquery.js" type="text/javascript"></script>
+	<script src="jquery.mobiDialog-1.1.js" type="text/javascript"></script>
+	<script>
+		$(function(){
+			
+	//以下是元素点击事件调用：
+			//warn
+			$("#warnBtn").warn_m("我是waring框！");
+			
+			
+			//alert
+			$("#alertBtn").alert_m("我是alert框！", alert_ok);
+			function alert_ok(){
+				alert("点击确定就会执行这个函数");
+			}
+			/*
+			以上4行也可以写做：
+				$("#alertBtn_m").alert_m("我是alert框！", function(){alert("点击确定就会执行这个函数")});
+			*/
+			
+			
+			//confirm
+			$("#confirmBtn").confirm_m("我是confirm框！", confirm_ok, confirm_cancel);
+			function confirm_ok(){
+				alert("点击确定就会执行这个函数");
+			}
+			function confirm_cancel(){
+				alert("而我，则是点击取消时的效果");
+			}
+			/*
+			以上7行也可以写做：
+				$("#confirmBtn_m").confirm_m("我是confirm框！", function(){alert("点击确定就会执行这个函数")}, function(){alert("点击取消就会执行这个函数")});
+			*/
+			
+			$("#promptBtn").prompt_m("我是prompt框！", function(text){alert(text);});//函数的参数为文本框的值
+			
+			$("#customBtn").custom_m(
+				'<span style="color:#666;font-size:16px;">请输入</span><br /><br /><textarea id="pop_textarea" style="width:100%;border-radius:5px;border:0;" cols="" rows="3" placeholder="最多不超过50字" maxlength="50"></textarea><br /><br /><br /><br />',
+				function(){
+					alert($("#pop_textarea").val());//点击确定按钮后能够获取的文本
+				}
+			);
+			
+	//以下是程序主动调用：
+			
+			warn_m("测试文字");
+			//alert_m("测试文字2");
+			//confirm_m("测试文字3");
+			//prompt_m("测试文字4");
+			//custom_m("测试文字5");
+		});
+	</script>
+</head>
+<body>
+	<div class="row">
+		<style>
+			html{font-size:62.5%;}
+			.r{font-size:1.2rem;border:1px solid #ccc;}
+			.r a{display: block;height:0.5rem;}
+		</style>
+		<p class="r">啊啊<a href="javascript:void(0);"></a></p>
+		<h1>position:middle</h1>
+		<button type="button" id="warnBtn">warn效果</button>
+		<button type="button" id="alertBtn">alert效果</button>
+		<button type="button" id="confirmBtn">confirm效果</button>
+        <button type="button" id="promptBtn">prompt效果</button>
+        <button type="button" id="customBtn">custom效果</button>
+	</div>
+</body>
+</html>
